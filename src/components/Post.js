@@ -1,23 +1,22 @@
 import React, {Component} from "react";
+import PostCard from "./PostCard";
+import {Link} from "react-router-dom";
+
 class Post extends Component{
+    remove(id){
+        this.props.removePost(id);
+    }
     render() {
         return(
-            <div className="card">
-                <div className="row">
-                    <div className="col-2">
-                        <img src="" alt=""/>
-                    </div>
-                    <div className="col-5">
-                        <h4>Pot Title</h4>
-                        <p>Post Content</p>
+            <div>
+                <Link to="/add">
+                    <button className="btn btn-primary bt-sm float-end">Add <i className="fa fa-add"></i></button><br/><br/>
 
-                    </div>
-                    <div className="col-5">
-                        <button className="btn btn-sm btn-info">
-                            <i className="fa fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
+                </Link>
+
+                {
+                    this.props.posts.map(post=><PostCard key={post.id} post={post} remove={this.remove.bind(this)}/>)
+                }
             </div>
         )
     }
