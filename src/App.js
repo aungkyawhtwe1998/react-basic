@@ -1,24 +1,39 @@
 
 import React  from 'react';
-import ACompnent from "./components/ACompnent";
-import BComponent from "./components/BComponent";
-import TitleContextProvider from "./components/TestContext";
-const H1_STYLE = {
-    color:"red",
-    fontWeight:"bold"
+import {ThemeProvider} from "styled-components";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {GlobalCss} from "./Styles/GlobalCss";
+import {Container} from "./Styles/Shares";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import LoginContextProvider from "./store/LoginContextApi";
+import RouteGuard from "./helpers/RouteGuard";
+const theme = {
+    colors:{
+        primary: "aliceblue"
+    }
 }
 function App() {
-    // const [title, setTitle] =useState("Title"); //Global state
-
-
     return (
-        <TitleContextProvider>
-            <div className="container">
-                <h1 style={H1_STYLE}>Context Api</h1>
-                <ACompnent />
-                <BComponent />
-            </div>
-        </TitleContextProvider>
+     <ThemeProvider theme={theme}>
+         <GlobalCss />
+         
+             <Container>
+             <LoginContextProvider>
+                 <Router>
+                     <Routes>
+                         <Route path="/" element={<Login/>} />
+                         <Route path="/home" element={
+                             <RouteGuard>
+                                 <Home/>
+                             </RouteGuard>
+                         } />
+                     </Routes>
+                 </Router>
+                 </LoginContextProvider>
+
+             </Container>
+     </ThemeProvider>
 
 
     );
