@@ -1,4 +1,10 @@
 import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-export const store = createStore(reducers,{},applyMiddleware(thunk));
+const initialData = {
+    products:[
+        {name:'Mg Mg'},
+        {name:'Aung Aung'}
+    ]
+}
+export const store = createStore(reducers,initialData,applyMiddleware(thunk));

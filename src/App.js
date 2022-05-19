@@ -7,12 +7,12 @@ function App() {
     const products = useSelector(store =>store.products);
 
     const dispatch = useDispatch();
-    useEffect(async()=>{
-        let response =await fetch('https://fakestoreapi.com/products');
-        let pds = await response.json();
-        console.log(pds);
-        dispatch(add(pds));
-    },[])
+    // useEffect(async()=>{
+    //     let response =await fetch('https://fakestoreapi.com/products');
+    //     let pds = await response.json();
+    //     console.log(pds);
+    //     dispatch(add(pds));
+    // },[])
 
     return (
 

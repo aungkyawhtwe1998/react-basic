@@ -1,25 +1,26 @@
 import {combineReducers} from 'redux';
-const getDbProduct = () => {
-    let dbData = localStorage.getItem('pros');
-    return dbData ? JSON.parse(dbData) : [];
-}
-const saveDbProduct = (products) => {
-    localStorage.setItem('pros', JSON.stringify(products));
-}
-const productReducer = (state =getDbProduct , {type, payload}) => {
+// const getDbProduct = () => {
+//     let dbData = localStorage.getItem('pros');
+//     return dbData ? JSON.parse(dbData) : [];
+// }
+// const saveDbProduct = (products) => {
+//     localStorage.setItem('pros', JSON.stringify(products));
+// }
+const productReducer = (state =[{image:'hey.dog'}] , {type, payload}) => {
     switch(type){
         case "add":
-            saveDbProduct(payload);
-            state = getDbProduct();
-            return state;
+            // saveDbProduct(payload);
+            // state = getDbProduct();
+            return state = payload;
         case "remove" :
-            state = getDbProduct();
-            let pds = state.filter(p => p.id != payload);
-            saveDbProduct(pds);
-            state = getDbProduct();
+            // state = getDbProduct();
+            // let pds = state.filter(p => p.id != payload);
+            // saveDbProduct(pds);
+            // state = getDbProduct();
+            return state.filter(p => p.id !== payload);
             
         default : 
-            state = getDbProduct();
+           // state = getDbProduct();
             return state;
     }
 }
